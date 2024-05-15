@@ -66,7 +66,18 @@ if (isset($_POST['delete'])) {
          </div>
 
          <?php
-         $select_admins = $conn->prepare("SELECT * FROM `users`");
+         $select_admins = $conn->prepare("
+         SELECT 
+            users.id,
+            users.first_name, 
+            users.last_name, 
+            users.email, 
+            users.username, 
+            users.phone_number, 
+            users.created_at 
+         FROM 
+            users
+         ");
          $select_admins->execute();
          if ($select_admins->rowCount() > 0) {
             while ($fetch_admins = $select_admins->fetch(PDO::FETCH_ASSOC)) {
@@ -74,7 +85,12 @@ if (isset($_POST['delete'])) {
                <div class="box" <?php if ($fetch_admins['first_name'] == 'admin') {
                   echo 'style="display:none;"';
                } ?>>
-                  <p>name : <span><?= $fetch_admins['first_name']; ?></span></p>
+                  <p>first name : <span><?= $fetch_admins['first_name']; ?></span></p>,
+                  <p>last name : <span><?= $fetch_admins['last_name']; ?></span></p>,
+                  <p>email : <span><?= $fetch_admins['email']; ?></span></p>
+                  <p>username : <span><?= $fetch_admins['username']; ?></span></p>
+                  <p>phone number : <span><?= $fetch_admins['phone_number']; ?></span></p>
+                  <p>created at : <span><?= $fetch_admins['created_at']; ?></span></p>
                   <form action="" method="POST">
                      <input type="hidden" name="delete_id" value="<?= $fetch_admins['id']; ?>">
                      <input type="submit" value="delete admins" onclick="return confirm('delete this admin?');" name="delete"

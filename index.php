@@ -79,7 +79,6 @@ if (isset($_POST['book'])) {
             $book_room->execute([$user_id, $booking_id, $name, $email, $number, $rooms, $roomtype, $check_in, $check_out, $adults, $childs]);
             $success_msg[] = 'room booked successfully!';
          }
-
       }
    } catch (PDOException $e) {
       echo "DB Error: " . $e->getMessage();
