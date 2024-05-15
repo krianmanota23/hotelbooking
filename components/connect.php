@@ -3,13 +3,18 @@
 // CREATE USER 'hotel_admin'@'localhost' IDENTIFIED BY 'hotel_admin';
 // GRANT ALL PRIVILEGES ON hotel_db_v2.* TO 'hotel_admin'@'localhost';
 
-$db_socket = '/tmp/mysql.sock'; // Path to MySQL socket file
-$db_name = 'hotel_db_v2';
-$db_user_name = 'hotel_admin';
-$db_user_pass = 'hotel_admin';
+// $db_socket = '/tmp/mysql.sock'; // Path to MySQL socket file
+// $db_name = 'hotel_db_v2';
+// $db_user_name = 'hotel_admin';
+// $db_user_pass = 'hotel_admin';
+
+$db_name = 'mysql:host=localhost;dbname=hotel_db_v2';
+$db_user_name = 'root';
+$db_user_pass = '';
 
 try {
-   $conn = new PDO("mysql:unix_socket=$db_socket;dbname=$db_name", $db_user_name, $db_user_pass);
+   $conn = new PDO($db_name, $db_user_name, $db_user_pass);
+   // $conn = new PDO("mysql:unix_socket=$db_socket;dbname=$db_name", $db_user_name, $db_user_pass);
    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
    echo "Connection failed: " . $e->getMessage();

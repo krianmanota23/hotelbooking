@@ -238,8 +238,8 @@ if (isset($_POST['search'])) {
                   echo '      <p class="lead fw-bold">' . htmlspecialchars($room['type']) . '</p>';
                   echo '    </div>';
                   echo '    <div class="d-flex flex-column">';
-                  echo '      <p class="fw-normal"><span class="lead">₱1,250</span> | <span class="text-body-secondary">per night</span></p>';
-                  echo '      <button type="button" class="btn btn-primary">Book</button>'; // Booking button logic might need JS or form submission
+                  echo '      <p class="fw-normal"><span class="lead">₱' . htmlspecialchars($room['price_per_night']) . '</span> | <span class="text-body-secondary">per night</span></p>';
+                  echo '      <a class="btn btn-primary" href="checkout.php">Book</a>';
                   echo '    </div>';
                   echo '  </div>';
                   echo '</div>';
