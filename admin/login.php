@@ -3,17 +3,11 @@
 include '../components/connect.php';
 
 if (isset($_POST['signin'])) {
-
-   // "singin" : {
-   //    "": "asdsad",
-   //    "password": "password"
-   // }
-
    $username = $_POST['username'];
-   $username = filter_var($username, FILTER_SANITIZE_STRING); // clean input, remove malicious codes
+   $username = filter_var($username, 513); // clean input, remove malicious codes
 
    $pass = sha1($_POST['password']); // compute the password hash
-   $pass = filter_var($pass, FILTER_SANITIZE_STRING); // clean input, remove malicious codes
+   $pass = filter_var($pass, 513); // clean input, remove malicious codes
 
    $select_admins = $conn->prepare("SELECT * FROM `users` WHERE username = ? AND is_admin = ? AND password = ? LIMIT 1");
    $select_admins->execute([$username, true, $pass]);
@@ -21,7 +15,7 @@ if (isset($_POST['signin'])) {
 
    if ($select_admins->rowCount() > 0) {
       setcookie('admin_id', $row['id'], time() + 60 * 60 * 24 * 30, '/');
-      header('location:dashboard.php');
+      header('location:home.php');
    } else {
       echo 'Incorrect username or password!';
       $warning_msg[] = 'Incorrect username or password!';

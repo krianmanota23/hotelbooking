@@ -21,7 +21,7 @@
          <a href="index.php#devteam">DevTeam</a>
          <a href="bookings.php">my bookings</a>
       </div>
-      
+
       <!-- just a display-->
       <div class="box">
          <a href="#">facebook <i class="fab fa-facebook-f"></i></a>

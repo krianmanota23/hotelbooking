@@ -34,12 +34,6 @@ VALUES (1, 'Room #1', 'Single', 500, 'https://images.unsplash.com/photo-16187739
        (4, 'Room #4', 'Family', 2000, 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
        (5, 'Room #5', 'Deluxe', 2500, 'https://images.unsplash.com/photo-1595576508898-0ad5c879a061?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
 
--- CREATE TABLE RoomImages (
---     image_id INT AUTO_INCREMENT PRIMARY KEY,
---     room_id INT NOT NULL,
---     image_url VARCHAR(255) NOT NULL,
---     FOREIGN KEY (room_id) REFERENCES Rooms(id) ON DELETE CASCADE
--- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE Bookings (
     id INT AUTO_INCREMENT PRIMARY KEY,
