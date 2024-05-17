@@ -56,6 +56,23 @@ if
     echo '<script>alert("Invalid request!");</script>';
   }
 }
+
+if (isset($_POST['send_message'])) {
+
+  $name = $_POST['full_name'];
+  $name = filter_var($name, FILTER_SANITIZE_STRING);
+  $email = $_POST['email_address'];
+  $email = filter_var($email, FILTER_SANITIZE_STRING);
+  $number = $_POST['contact_number'];
+  $number = filter_var($number, FILTER_SANITIZE_STRING);
+  $message = $_POST['content'];
+  $message = filter_var($message, FILTER_SANITIZE_STRING);
+
+  $insert_message = $conn->prepare("INSERT INTO `messages`(name, email, contact_number, content) VALUES(?,?,?,?)");
+  $insert_message->execute([$name, $email, $number, $message]);
+
+}
+
 ?>
 
 <!doctype html>
@@ -388,25 +405,25 @@ if
   <section id="contact" class="information d-flex flex-column flex-md-row mt-4 pt-4 ">
     <div class="flex-grow-1 px-5">
       <p class="fw-light lead text-center">Send us a message!</p>
-      <form>
+      <form action="" method="POST">
         <div class="mb-2">
           <label for="contact-name" class="form-label">Name</label>
-          <input type="text" class="form-control" id="contact-name">
+          <input type="text" class="form-control" id="contact-name" name="full_name">
         </div>
         <div class="mb-2">
           <label for="contact-email" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="contact-email" aria-describedby="emailHelp">
+          <input type="email" class="form-control" id="contact-email" aria-describedby="emailHelp" name="email_address">
           <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
         <div class="mb-2">
           <label for="contact-number" class="form-label">Contact number</label>
-          <input type="text" class="form-control" id="contact-number">
+          <input type="text" class="form-control" id="contact-number" name="contact_number">
         </div>
         <div class="mb-2">
           <label for="contact-message" class="form-label">Message</label>
-          <textarea class="form-control" id="floatingTextarea"></textarea>
+          <textarea class="form-control" id="floatingTextarea" name="content"></textarea>
         </div>
-        <button type="submit" class="mt-2 btn btn-primary">Send message</button>
+        <button type="submit" class="mt-2 btn btn-primary" name="send_message">Send message</button>
       </form>
     </div>
 
