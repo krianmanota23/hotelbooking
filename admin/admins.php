@@ -1,5 +1,5 @@
 <?php
-include '../components/connect.php';
+include '../shared/connect.php';
 
 $title = 'Dashboard - Messages';
 
@@ -10,45 +10,54 @@ SELECT
   users.last_name, 
   users.email, 
   users.username, 
-  users.phone_number, 
-  users.created_at 
+  users.phone_number
 FROM 
   users
+WHERE is_admin = ?
 ");
-$select_users->execute();
+$select_users->execute([true]);
 
-$content = '';
+$table_body = '';
 
 if ($select_users->rowCount() > 0) {
   while ($user = $select_users->fetch(PDO::FETCH_ASSOC)) {
-    $content .= <<<HTML
-      <div class="border p-4">
-        <p class="p-0 m-0">user id : <span>{$user['id']}</span></p>
-        <p class="p-0 m-0">user first_name : <span>{$user['first_name']}</span></p>
-        <p class="p-0 m-0">user last_name : <span>{$user['last_name']}</span></p>
-        <p class="p-0 m-0">user email : <span>{$user['email']}</span></p>
-        <p class="p-0 m-0">user username : <span>{$user['username']}</span></p>
-        <p class="p-0 m-0">user phone_number : <span>{$user['phone_number']}</span></p>
-        <p class="p-0 m-0">user created_at : <span>{$user['created_at']}</span></p>
-        <form action="" method="POST">
-            <input type="hidden" name="delete_id" value="{$user['id']}">
-            <input type="submit" value="delete user" onclick="return confirm('delete this user?');"
-              name="delete" class="btn btn-primary">
-        </form>
-      </div>
+    $table_body .= <<<HTML
+      <tr>
+        <td class="align-middle">{$user['id']}</td>
+        <td class="align-middle">{$user['first_name']}</td>
+        <td class="align-middle">{$user['last_name']}</td>
+        <td class="align-middle">{$user['email']}</td>
+        <td class="align-middle">{$user['username']}</td>
+        <td class="align-middle">{$user['phone_number']}</td>
+      </tr>
     HTML;
   }
 } else {
-  $content = '<p>No recent messages!</p>';
+  $table_body = '<p>No adminstrators!</p>';
 }
 
-// POST delete user request handler 
-if (isset($_POST['delete'])) {
-  $delete_id = $_POST['delete_id'];
-  $filtered_input = filter_var($delete_id, 513); // 513 is the integer value for FILTER_SANITIZE_STRING
+$content = <<<HTML
+  <div class="container">
+   <h1 class="display-6 text-center my-4">Administrators</h1>
+  <div class="table-responsive small">
+    <table class="table table-md">
+      <thead>
+        <tr>
+        <th scope="col">ID</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Username</th>
+        <th scope="col">Phone Number</th>
+        </tr>
+      </thead>
+      <tbody>$table_body</tbody>
+    </table>
+    <a href="register.php" class="btn btn-primary">
+        Register new admin
+      </a>
+  </div>
+  </div>
+HTML;
 
-  $delete_message = $conn->prepare("DELETE FROM `users` WHERE id = ?");
-  $delete_message->execute([$filtered_input]);
-}
-
-include '../components/admin_template.php';
+include 'template.php';

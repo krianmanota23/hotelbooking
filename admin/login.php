@@ -1,6 +1,6 @@
 <?php
 
-include '../components/connect.php';
+include '../shared/connect.php';
 
 if (isset($_POST['signin'])) {
    $username = $_POST['username'];
@@ -15,7 +15,7 @@ if (isset($_POST['signin'])) {
 
    if ($select_admins->rowCount() > 0) {
       setcookie('admin_id', $row['id'], time() + 60 * 60 * 24 * 30, '/');
-      header('location:home.php');
+      header('location:index.php');
    } else {
       echo 'Incorrect username or password!';
       $warning_msg[] = 'Incorrect username or password!';
@@ -45,7 +45,7 @@ if (isset($_POST['signin'])) {
 
    <main class="form-signin w-100 m-auto">
       <form data-bitwarden-watching="1" action="" method="POST">
-         <h1 class="h3 mb-3 fw-normal">Welcome back!</h1>
+         <h1 class="h3 mb-3 fw-normal">Admin Dashboard</h1>
          <div class="form-floating">
             <input id="floatingInput" type="text" name="username" class="form-control" placeholder="enter username"
                maxlength="20" class="box" required oninput="this.value = this.value.replace(/\s/g, '')">

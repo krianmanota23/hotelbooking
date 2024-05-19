@@ -10,7 +10,7 @@ CREATE TABLE Users (
     username VARCHAR(100) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-    phone_number VARCHAR(20) UNIQUE,
+    phone_number VARCHAR(20),
     is_admin BOOLEAN NOT NULL DEFAULT FALSE,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -23,7 +23,7 @@ CREATE TABLE Rooms (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     type VARCHAR(50) NOT NULL,
-    image_url VARCHAR(255) NOT NULL
+    image_url VARCHAR(255) NOT NULL,
     price_per_night INT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -34,7 +34,6 @@ VALUES (1, 'Room #1', 'Single', 500, 'https://images.unsplash.com/photo-16187739
        (4, 'Room #4', 'Family', 2000, 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
        (5, 'Room #5', 'Deluxe', 2500, 'https://images.unsplash.com/photo-1595576508898-0ad5c879a061?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
 
-
 CREATE TABLE Bookings (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -43,19 +42,34 @@ CREATE TABLE Bookings (
     children_count INT NOT NULL DEFAULT 0,
     check_in DATE NOT NULL,
     check_out DATE NOT NULL,
+    total INT NOT NULL DEFAULT 0,
+    is_paid BOOLEAN NOT NULL DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE,
     FOREIGN KEY (room_id) REFERENCES Rooms(id) ON DELETE CASCADE,
     CHECK (check_out > check_in)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;;
 
 INSERT INTO Bookings (id, user_id, room_id, adult_count, children_count, check_in, check_out) 
-VALUES (1, 1, 1, 2, 1, '2024-05-10', '2024-05-15');
-INSERT INTO Bookings (id, user_id, room_id, adult_count, children_count, check_in, check_out) 
-VALUES (2, 1, 4, 5, 2, '2024-05-13', '2024-05-16');
-INSERT INTO Bookings (id, user_id, room_id, adult_count, children_count, check_in, check_out) 
-VALUES (3, 1, 3, 3, 3, '2024-05-12', '2024-05-17');
+VALUES  (1, 1, 1, 2, 1, '2024-05-10', '2024-05-15'),
+        (2, 1, 4, 5, 2, '2024-05-13', '2024-05-16'),
+        (3, 1, 3, 3, 3, '2024-05-12', '2024-05-17');
 
+CREATE TABLE PaymentInformations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    booking_id INT NOT NULL,
+    card_holder VARCHAR(255) NOT NULL,
+    card_number VARCHAR(255) NOT NULL,
+    card_expiry VARCHAR(255) NOT NULL,
+    card_cvv VARCHAR(255) NOT NULL,
+    FOREIGN KEY (booking_id) REFERENCES Bookings(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;;
+
+INSERT INTO PaymentInformations (id, booking_id, card_holder, card_number, card_expiry, card_cvv) 
+VALUES  (1, 1, "John Doe", "111111", "03/27", "123"),
+        (2, 2, "Jerome Palmita", "222222", "01/25", "456"),
+        (3, 3, "Ralph Palmita", "333333", "09/28", "789");
 
 CREATE TABLE Messages (
     id INT AUTO_INCREMENT PRIMARY KEY,

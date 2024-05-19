@@ -8,7 +8,7 @@
 // $db_user_name = 'hotel_admin';
 // $db_user_pass = 'hotel_admin';
 
-$db_name = 'mysql:host=localhost;dbname=hotel_db_v2';
+$db_name = 'mysql:host=localhost;dbname=hotel_db';
 $db_user_name = 'root';
 $db_user_pass = '';
 

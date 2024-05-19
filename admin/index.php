@@ -1,5 +1,5 @@
 <?php
-include '../components/connect.php';
+include '../shared/connect.php';
 
 $title = 'Dashboard - Home';
 
@@ -114,7 +114,6 @@ HTML;
 /* Recent Bookings SQL Statements  */
 $select_bookings = $conn->prepare("
   SELECT 
-    bookings.id, 
     bookings.check_in, 
     bookings.check_out, 
     users.last_name,
@@ -137,13 +136,10 @@ if ($select_bookings->rowCount() > 0) {
   while ($booking = $select_bookings->fetch(PDO::FETCH_ASSOC)) {
     $table_body .= <<<HTML
       <tr>
-        <td>{$booking['id']}</td>
         <td>{$booking['check_in']}</td>
         <td>{$booking['check_out']}</td>
-        <td>{$booking['last_name']}</td>
-        <td>{$booking['first_name']}</td>
-        <td>{$booking['room_name']}</td>
-        <td>{$booking['room_type']}</td>
+        <td>{$booking['last_name']}, {$booking['first_name']}</td>
+        <td>{$booking['room_name']} ({$booking['room_type']})</td>
       </tr>
     HTML;
   }
@@ -158,11 +154,10 @@ $table = <<<HTML
     <table class="table table-md">
       <thead>
         <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Room</th>
-          <th scope="col">Check In</th>
-          <th scope="col">Check Out</th>
-          <th scope="col">Customer</th>
+        <th scope="col">Check In</th>
+        <th scope="col">Check Out</th>
+        <th scope="col">Customer</th>
+        <th scope="col">Room</th>
         </tr>
       </thead>
       <tbody>$table_body</tbody>
@@ -171,4 +166,4 @@ $table = <<<HTML
 HTML;
 
 $content = $cards . $table;
-include '../components/admin_template.php';
+include 'template.php';

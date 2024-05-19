@@ -1,32 +1,52 @@
 <?php
-include '../components/connect.php';
+include '../shared/connect.php';
 
 $title = 'Dashboard - Messages';
 
 $select_messages = $conn->prepare("SELECT * FROM `messages`");
 $select_messages->execute();
 
-$content = '';
-
+$table_body = '';
 if ($select_messages->rowCount() > 0) {
   while ($message = $select_messages->fetch(PDO::FETCH_ASSOC)) {
-    $content .= <<<HTML
-      <div class="border p-4">
-        <p class="p-0 m-0">message id : <span>{$message['id']}</span></p>
-        <p class="p-0 m-0">message email : <span>{$message['email']}</span></p>
-        <p class="p-0 m-0">message contact_number : <span>{$message['contact_number']}</span></p>
-        <p class="p-0 m-0">message content : <span>{$message['content']}</span></p>
-        <form action="" method="POST">
-            <input type="hidden" name="delete_id" value="{$message['id']}">
-            <input type="submit" value="delete message" onclick="return confirm('delete this message?');"
-              name="delete" class="btn btn-primary">
+    $table_body .= <<<HTML
+      <tr>
+        <td class="align-middle">{$message['id']}</td>
+        <td class="align-middle">{$message['email']}</td>
+        <td class="align-middle">{$message['contact_number']}</td>
+        <td class="align-middle">{$message['content']}</td>
+        <td class="align-middle">
+        <form action="mailto:{$message['email']}" method="post" enctype="text/plain">
+          <input type="submit" class="btn btn-primary" value="Reply">
         </form>
-      </div>
+        </td>
+      </tr>
     HTML;
   }
 } else {
-  $content = '<p>No recent messages!</p>';
+  $table_body = '<p>No adminstrators!</p>';
 }
+
+$content = <<<HTML
+  <div class="container">
+   <h1 class="display-6 text-center my-4">Messages</h1>
+  <div class="table-responsive small">
+    <table class="table table-md">
+      <thead>
+        <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Email</th>
+        <th scope="col">Contact Number</th>
+        <th scope="col">Content</th>
+        <th scope="col">Action(s)</th>
+        </tr>
+      </thead>
+      <tbody>$table_body</tbody>
+    </table>
+  </div>
+  </div>
+HTML;
+
 
 // POST delete message request handler 
 if (isset($_POST['delete'])) {
@@ -37,4 +57,4 @@ if (isset($_POST['delete'])) {
   $delete_message->execute([$filtered_input]);
 }
 
-include '../components/admin_template.php';
+include 'template.php';
