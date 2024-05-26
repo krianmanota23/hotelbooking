@@ -46,12 +46,12 @@ if (isset($_POST['signin'])) {
       <h1 class="h3 mb-3 fw-normal">Sign In</h1>
       <div class="form-floating">
         <input id="floatingInput" type="email" name="email" class="form-control" placeholder="enter username"
-          maxlength="20" class="box" required oninput="this.value = this.value.replace(/\s/g, '')">
+          maxlength="30" class="box" required oninput="this.value = this.value.replace(/\s/g, '')">
         <label for="floatingInput">Email</label>
       </div>
       <div class="form-floating">
         <input id="floatingPassword" type="password" name="password" class="form-control" placeholder="enter password"
-          maxlength="20" class="box" required oninput="this.value = this.value.replace(/\s/g, '')">
+          maxlength="30" class="box" required oninput="this.value = this.value.replace(/\s/g, '')">
         <label for="floatingPassword">Password</label>
       </div>
       <div class="form-check text-start my-3">

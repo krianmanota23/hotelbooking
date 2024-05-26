@@ -45,15 +45,15 @@ if (isset($_POST['signin'])) {
 
    <main class="form-signin w-100 m-auto">
       <form data-bitwarden-watching="1" action="" method="POST">
-         <h1 class="h3 mb-3 fw-normal">Admin Dashboard</h1>
+         <h1 class="h3 mb-3 fw-normal">Hello</h1>
          <div class="form-floating">
             <input id="floatingInput" type="text" name="username" class="form-control" placeholder="enter username"
-               maxlength="20" class="box" required oninput="this.value = this.value.replace(/\s/g, '')">
+               maxlength="30" class="box" required oninput="this.value = this.value.replace(/\s/g, '')">
             <label for="floatingInput">Username</label>
          </div>
          <div class="form-floating">
             <input id="floatingPassword" type="password" name="password" class="form-control"
-               placeholder="enter password" maxlength="20" class="box" required
+               placeholder="enter password" maxlength="30" class="box" required
                oninput="this.value = this.value.replace(/\s/g, '')">
             <label for="floatingPassword">Password</label>
          </div>

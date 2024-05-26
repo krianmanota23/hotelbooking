@@ -17,7 +17,11 @@ CREATE TABLE Users (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;;
 
 INSERT INTO Users (id, first_name, last_name, username, email, password, phone_number, is_admin) 
-VALUES (1, 'Francis', 'Manibad', 'francis', 'francis@admin.com', '6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2', '09650000001', TRUE);
+VALUES (1, 'Francis', 'Manibad', 'francis', 'francis@admin.com', '6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2', '09650000001', TRUE),
+(2, 'krian', 'manota', 'krian', 'manota@admin.com', '6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2', '09650000002', TRUE),
+(3, 'adrian', 'palanca', 'adrian', 'palanca@admin.com', '6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2', '09650000003', TRUE),
+(4, 'ace', 'angeles', 'ace', 'angeles@admin.com', '6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2', '09650000004', TRUE),
+(5, 'basil', 'Fulgencio', 'basil', 'basil@admin.com', '6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2', '09650000005', TRUE);
 
 CREATE TABLE Rooms (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -51,10 +55,7 @@ CREATE TABLE Bookings (
     CHECK (check_out > check_in)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;;
 
-INSERT INTO Bookings (id, user_id, room_id, adult_count, children_count, check_in, check_out) 
-VALUES  (1, 1, 1, 2, 1, '2024-05-10', '2024-05-15'),
-        (2, 1, 4, 5, 2, '2024-05-13', '2024-05-16'),
-        (3, 1, 3, 3, 3, '2024-05-12', '2024-05-17');
+
 
 CREATE TABLE PaymentInformations (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -67,9 +68,10 @@ CREATE TABLE PaymentInformations (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;;
 
 INSERT INTO PaymentInformations (id, booking_id, card_holder, card_number, card_expiry, card_cvv) 
-VALUES  (1, 1, "John Doe", "111111", "03/27", "123"),
-        (2, 2, "Jerome Palmita", "222222", "01/25", "456"),
-        (3, 3, "Ralph Palmita", "333333", "09/28", "789");
+VALUES  (1, 1, "zombie", "111111", "05/30", "123"),
+        (2, 2, "alien", "222222", "01/25", "456");
+        (2, 2, "vampire", "333333", "01/40", "789");
+        
 
 CREATE TABLE Messages (
     id INT AUTO_INCREMENT PRIMARY KEY,

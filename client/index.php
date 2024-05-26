@@ -183,8 +183,56 @@ $introduction_section = <<<HTML
 </div>
 HTML;
 
+$rooms_carousel_section = <<<HTML
+<section id="rooms" class="carousel slide carousel-fade">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100 img-fluid" src="../images/room-img-1.jpg" alt="">
+      <div class="carousel-caption d-none d-md-block">
+        <p class="fs-2 fw-bold">Elegent Rooms</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100 img-fluid" src="../images/room-img-2.jpg" alt="">
+      <div class="carousel-caption d-none d-md-block">
+        <p class="fs-2 fw-bold">Dining and Bar Area</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100 img-fluid" src="../images/room-img-3.jpg" alt="">
+      <div class="carousel-caption d-none d-md-block">
+        <p class="fs-2 fw-bold">Waiting Area</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100 img-fluid" src="../images/room-img-1.jpg" alt="">
+      <div class="carousel-caption d-none d-md-block">
+        <p class="fs-2 fw-bold">Elegant rooms</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100 img-fluid" src="../images/room-img-2.jpg" alt="">
+      <div class="carousel-caption d-none d-md-block">
+        <p class="fs-2 fw-bold">Dining and Bar Area</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#rooms" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#rooms" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</section>
+HTML;
+
 $room_search_form = <<<HTML
 <section id="booking" class="booking">
+<div class="text-center my-4">
+  <p class="h1">BOOK NOW !</p>
+</div>
   <form action="" method="post" class="d-flex flex-column flex-md-row mx-5 justify-content-center gap-4">
     <div class="d-flex flex-row gap-4 justify-content-center">
       <div class="flex-grow-1">
@@ -330,50 +378,7 @@ $amenities_section = <<<HTML
 </section>
 HTML;
 
-$rooms_carousel_section = <<<HTML
-<section id="rooms" class="carousel slide carousel-fade">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100 img-fluid" src="../images/room-img-1.jpg" alt="">
-      <div class="carousel-caption d-none d-md-block">
-        <p class="fs-2 fw-bold">Single Room</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100 img-fluid" src="../images/room-img-2.jpg" alt="">
-      <div class="carousel-caption d-none d-md-block">
-        <p class="fs-2 fw-bold">Couple Room</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100 img-fluid" src="../images/room-img-3.jpg" alt="">
-      <div class="carousel-caption d-none d-md-block">
-        <p class="fs-2 fw-bold">Twin Bed Room</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100 img-fluid" src="../images/room-img-1.jpg" alt="">
-      <div class="carousel-caption d-none d-md-block">
-        <p class="fs-2 fw-bold">Family Room</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100 img-fluid" src="../images/room-img-2.jpg" alt="">
-      <div class="carousel-caption d-none d-md-block">
-        <p class="fs-2 fw-bold">Deluxe Room</p>
-      </div>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#rooms" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#rooms" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</section>
-HTML;
+
 
 $contact_us_section = <<<HTML
 <div class="flex-grow-1 px-5" id="contact">
@@ -486,7 +491,7 @@ HTML;
 $developers = <<<HTML
 
 <section>
-  <p class="fw-light lead text-center mb-3">Meet the Developers</p>
+  <p class="fw-bold lead text-center mb-1">Meet the Developers</p>
   <div class="d-flex gap-1">
     <div class="card developer" style="width: 18rem;">
       <div class="developer-image">

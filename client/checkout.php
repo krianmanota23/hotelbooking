@@ -162,7 +162,7 @@ $checkout_form = <<<HTML
       <div class="col-6">
         <label for="username" class="form-label">Username</label>
         <div class="input-group has-validation">
-          <span class="input-group-text">@</span>
+          
           <input type="text" class="form-control" id="username" placeholder="Username" required name="username">
           <div class="invalid-feedback">
             Your username is required.
@@ -181,7 +181,7 @@ $checkout_form = <<<HTML
       </div>
 
       <div class="col-12">
-        <label for="email" class="form-label">Email <span class="text-body-secondary">(Optional)</span></label>
+        <label for="email" class="form-label">Email <span class="text-body-secondary">Must !!</span></label>
         <input type="email" class="form-control" id="email" placeholder="" name="email">
         <div class="invalid-feedback">
           Please enter a valid email address for billing updates.

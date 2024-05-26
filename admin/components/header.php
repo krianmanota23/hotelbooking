@@ -1,7 +1,7 @@
 <header class="border-bottom">
   <div class="container">
     <navbar class="navbar navbar-expand-lg d-flex align-items-center justify-content-between">
-      <a class="navbar-brand fw-bold" href="index.php">Dashboard</a>
+      <a class="navbar-brand fw-bold" href="index.php">Admin Panel</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler"
         aria-controls="navbar-toggler" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
